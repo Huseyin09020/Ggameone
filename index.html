@@ -178,6 +178,10 @@ label { display: block; font-size: 0.85rem; color: var(--muted); margin: 12px 0 
 .t4 { background: rgba(255,215,90,0.22); border-color: rgba(255,215,90,0.5); } .t4 s { background: #ffd75a; }
 .t5 { background: rgba(57,255,20,0.2); border-color: #39ff14; } .t5 s { background: #39ff14; color: #000; }
 .t6 { background: rgba(255,0,127,0.22); border-color: #ff007f; } .t6 s { background: #ff007f; color: #fff; }
+.t7 { background: rgba(0,240,255,0.25); border-color: #00f0ff; } .t7 s { background: #00f0ff; color: #000; }
+.t8 { background: rgba(255,85,0,0.28); border-color: #ff5500; } .t8 s { background: #ff5500; color: #fff; }
+.t9 { background: rgba(177,85,255,0.3); border-color: #b155ff; } .t9 s { background: #b155ff; color: #fff; }
+.t10 { background: rgba(255,215,0,0.35); border-color: #ffd700; box-shadow: 0 0 10px rgba(255,215,0,0.5); } .t10 s { background: linear-gradient(135deg, #fff, #ffd700); color: #000; }
 
 /* Daily Login Modal Cards */
 .streak-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 16px; }
@@ -410,7 +414,9 @@ const PRESETS = [
   'Counter-Strike 2', 'Valorant', 'Fortnite', 'GTA V', 'Minecraft', 'League of Legends', 
   'Dota 2', 'Apex Legends', 'Rocket League', 'PUBG', 'Rust', 'Elden Ring', 'The Witcher 3', 
   'Cyberpunk 2077', 'Red Dead Redemption 2', 'Among Us', 'Fall Guys', 'Terraria', 'Stardew Valley', 
-  'Hollow Knight', 'Call of Duty', 'Overwatch 2', 'Genshin Impact', 'Roblox', 'EA Sports FC', 
+  'Hollow Knight', 'Call of Duty', 'Overwatch 2', 'Genshin Impact', 'Roblox', 'EA Sports FC 24', 
+  'EA Sports FC 25', 'EA Sports FC 26', 'EA Sports FC 27', 'Football Manager 2024', 'Football Manager 2026',
+  'Outlast', 'Outlast 2', 'The Outlast Trials',
   'Euro Truck Simulator 2', 'Left 4 Dead 2', 'Team Fortress 2', 'Hades', 'Sea of Thieves',
   'Resident Evil Village', 'Resident Evil 4', 'Resident Evil 2', 'Hogwarts Legacy', 'Sons of the Forest', 'God of War'
 ];
@@ -421,7 +427,9 @@ const STEAM_IDS = {
   'GTA V': 271590, 'Among Us': 945360, 'Fall Guys': 1097150, 'Terraria': 105600, 'Stardew Valley': 413150, 
   'Hollow Knight': 367520, 'Rocket League': 252950, 'Overwatch 2': 2357570, 'Left 4 Dead 2': 550, 
   'Team Fortress 2': 440, 'Hades': 1145360, 'Sea of Thieves': 1172620, 'Euro Truck Simulator 2': 227300, 
-  'Call of Duty': 1938090, 'EA Sports FC': 2669320, 'Valorant': 8500, 'Resident Evil Village': 1196590, 
+  'Call of Duty': 1938090, 'EA Sports FC 24': 2195250, 'EA Sports FC 25': 2669320, 'Football Manager 2024': 2252570,
+  'Outlast': 238320, 'Outlast 2': 414700, 'The Outlast Trials': 1304930,
+  'Valorant': 8500, 'Resident Evil Village': 1196590, 
   'Resident Evil 4': 2050650, 'Resident Evil 2': 883710, 'Hogwarts Legacy': 990080, 'Sons of the Forest': 1326410, 
   'God of War': 1593500
 };
@@ -640,36 +648,36 @@ const editWait = g => { const t = g.lastEdit + WEEK - Date.now(); return g.lastE
 function snap(u) { return { pts: uPoints(u), ach: new Set(achList(u).filter(a => a.done).map(a => a.id)) }; }
 function gainMsg(u, before, extra) {
   const now = snap(u), d = now.pts - before.pts;
-  const fresh = ACH.filter(a => now.ach.has(a.id) && !before.ach.has(a.id));
-  let m = []; if (d > 0) m.push(`+${d} Puan`);
-  if (fresh.length) m.push('Başarım: ' + fresh.map(a => a.n).join(', '));
-  toast(m.length ? m.join(' · ') : extra);
-}
-
-// 150 Tier Badge Rank Generator
+// Expanded Badge Titles (250+ unique titles)
 const BADGE_NAMES = [
   "Acemi", "Isınma", "Çaylak", "Gelişen", "Kararlı", "Oyun Avcısı", "Sert Hamle", "Karakter Ustası", "Gece Kuşu", "Savaşçı",
   "Alevli", "Siber", "Kozmik", "Galaktik", "Ejder", "Mitolojik", "Mistik", "Zaman Büken", "Kıdemli", "Efsane",
-  "Işık Ustası", "Gölge Savaşçısı", "Kraliyet", "Sonsuzluk", "Şampiyon", "Yüce Ustalar", "Evrensel", "Kaos Ajanı", "GGAMER", "Üstat"
+  "Işık Ustası", "Gölge Savaşçısı", "Kraliyet", "Sonsuzluk", "Şampiyon", "Yüce Ustalar", "Evrensel", "Kaos Ajanı", "GGAMER", "Üstat",
+  "Bozgun", "Fırtına", "Piksel Kralı", "Zindan Fatihi", "Taktisyen", "Lider", "Yıldız Avcısı", "Zaman Yolcusu", "Büyücü", "Işık Muhafızı",
+  "Karanlık Lord", "Simyacı", "Yıkım Getiren", "Son Savaşçı", "Sonsuz Güç", "Kuantum Ustası", "Valkyrie", "Aura", "Nebula", "GALAXY-X"
 ];
 
 function tier(n) { 
-  if (n >= 100) return 6;
-  if (n >= 50) return 5;
-  if (n >= 30) return 4;
-  if (n >= 15) return 3;
+  if (n >= 300) return 10;
+  if (n >= 200) return 9;
+  if (n >= 150) return 8;
+  if (n >= 100) return 7;
+  if (n >= 60) return 6;
+  if (n >= 35) return 5;
+  if (n >= 20) return 4;
+  if (n >= 10) return 3;
   if (n >= 5) return 2;
   return 1; 
 }
 
 function getBadgeTitle(n) {
-  const levelIndex = Math.min(n - 1, 149);
+  const levelIndex = Math.min(n - 1, 499);
   const baseName = BADGE_NAMES[levelIndex % BADGE_NAMES.length];
   const rankNumber = Math.floor(levelIndex / BADGE_NAMES.length) + 1;
   return `${baseName} ${rankNumber > 1 ? 'MK-' + rankNumber : ''}`;
 }
 
-const TIER_ICON = { 1: '★', 2: '◆', 3: '✦', 4: '♛', 5: '⚡', 6: '🌌' };
+const TIER_ICON = { 1: '★', 2: '◆', 3: '✦', 4: '♛', 5: '⚡', 6: '🌌', 7: '🔮', 8: '🔥', 9: '💎', 10: '👑' };
 const badgeHTML = n => { 
   const t = tier(n); 
   const bTitle = getBadgeTitle(n);
