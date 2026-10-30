@@ -648,6 +648,12 @@ const editWait = g => { const t = g.lastEdit + WEEK - Date.now(); return g.lastE
 function snap(u) { return { pts: uPoints(u), ach: new Set(achList(u).filter(a => a.done).map(a => a.id)) }; }
 function gainMsg(u, before, extra) {
   const now = snap(u), d = now.pts - before.pts;
+  const fresh = ACH.filter(a => now.ach.has(a.id) && !before.ach.has(a.id));
+  let m = []; if (d > 0) m.push(`+${d} Puan`);
+  if (fresh.length) m.push('Başarım: ' + fresh.map(a => a.n).join(', '));
+  toast(m.length ? m.join(' · ') : extra);
+}
+
 // Expanded Badge Titles (250+ unique titles)
 const BADGE_NAMES = [
   "Acemi", "Isınma", "Çaylak", "Gelişen", "Kararlı", "Oyun Avcısı", "Sert Hamle", "Karakter Ustası", "Gece Kuşu", "Savaşçı",
