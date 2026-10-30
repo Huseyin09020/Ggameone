@@ -64,16 +64,17 @@ body {
 }
 
 /* Dynamic Theme BG overrides for Iconic Games */
-.bg-re { background: linear-gradient(135deg, #100202, #3b0606 50%, #8b0000 100%) !important; }
-.bg-hogwarts { background: linear-gradient(135deg, #091726, #1b382b 50%, #3e2808 100%) !important; }
-.bg-forest { background: linear-gradient(135deg, #07150b, #19381f 50%, #0d2212 100%) !important; }
-.bg-gow { background: linear-gradient(135deg, #170d06, #3d1b06 50%, #0f2b38 100%) !important; }
-.bg-valorant { background: linear-gradient(135deg, #0f1923 0%, #ff4655 50%, #111e2e 100%) !important; }
-.bg-cyberpunk { background: linear-gradient(135deg, #1f1b00, #423c00 50%, #fcee0a 100%) !important; }
-.bg-fm24 { background: linear-gradient(135deg, #031c0a, #0b3d17 50%, #1b263b 100%) !important; }
-.bg-fm26 { background: linear-gradient(135deg, #081026, #0e2a47 50%, #00e676 100%) !important; }
-.bg-ea24 { background: linear-gradient(135deg, #051329, #0a2550 50%, #00f0ff 100%) !important; }
-.bg-ea25 { background: linear-gradient(135deg, #180324, #3d085c 50%, #ff007f 100%) !important; }
+.bg-re { background: linear-gradient(135deg, rgba(16,2,2,0.85), rgba(139,0,0,0.85)), url('https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/page_bg_generated_v6.jpg') center/cover no-repeat !important; }
+.bg-hogwarts { background: linear-gradient(135deg, rgba(9,23,38,0.85), rgba(62,40,8,0.85)), url('https://cdn.cloudflare.steamstatic.com/steam/apps/990080/page_bg_generated_v6.jpg') center/cover no-repeat !important; }
+.bg-forest { background: linear-gradient(135deg, rgba(7,21,11,0.85), rgba(13,34,18,0.85)), url('https://cdn.cloudflare.steamstatic.com/steam/apps/1326410/page_bg_generated_v6.jpg') center/cover no-repeat !important; }
+.bg-gow { background: linear-gradient(135deg, rgba(23,13,6,0.85), rgba(15,43,56,0.85)), url('https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/page_bg_generated_v6.jpg') center/cover no-repeat !important; }
+.bg-valorant { background: linear-gradient(135deg, rgba(15,25,35,0.7), rgba(255,70,85,0.5)), url('https://th.bing.com/th/id/R.fbed35938acd56287d4dcedf1bcc65f7?rik=gUYELBiH6q3QSA&pid=ImgRaw&r=0') center/cover no-repeat !important; }
+.bg-cyberpunk { background: linear-gradient(135deg, rgba(31,27,0,0.85), rgba(252,238,10,0.4)), url('https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/page_bg_generated_v6.jpg') center/cover no-repeat !important; }
+.bg-fm24 { background: linear-gradient(135deg, rgba(3,28,10,0.7), rgba(27,38,59,0.7)), url('https://th.bing.com/th/id/R.b08fa915154c05547326666c6f845712?rik=pElMQU29Gez6KA&pid=ImgRaw&r=0') center/cover no-repeat !important; }
+.bg-fm26 { background: linear-gradient(135deg, rgba(8,16,38,0.7), rgba(0,230,118,0.5)), url('https://th.bing.com/th/id/R.42263531953c6cc2aae11ff151c78c8b?rik=cGFVRqesvuhr4g&pid=ImgRaw&r=0') center/cover no-repeat !important; }
+.bg-ea24 { background: linear-gradient(135deg, rgba(5,19,41,0.85), rgba(0,240,255,0.4)) !important; }
+.bg-ea25 { background: linear-gradient(135deg, rgba(24,3,36,0.85), rgba(255,0,127,0.4)) !important; }
+.bg-ea26 { background: linear-gradient(135deg, rgba(10,30,60,0.85), rgba(255,215,0,0.5)) !important; }
 
 h1, h2, h3, h4 { font-family: var(--head); letter-spacing: 0.3px; }
 button, input, select { font: inherit; color: inherit; }
@@ -207,6 +208,7 @@ label { display: block; font-size: 0.85rem; color: var(--muted); margin: 12px 0 
 .avatar.sh-triangle { padding-top: 28%; }
 .avatar.sh-shield { padding-bottom: 12%; }
 
+/* Dynamic Frame Colors with fallback rules */
 .fc-orange { --fb: var(--orange); --glow: rgba(255,138,31,.75); }
 .fc-purple { --fb: var(--purple); --glow: rgba(139,77,255,.85); }
 .fc-duo { --fb: conic-gradient(var(--orange), var(--purple), var(--orange)); --glow: rgba(190,100,200,.6); }
@@ -214,8 +216,34 @@ label { display: block; font-size: 0.85rem; color: var(--muted); margin: 12px 0 
 .fc-ice { --fb: linear-gradient(135deg, #d8f4ff, #6fd0ff); --glow: rgba(111,208,255,.7); }
 .fc-neon { --fb: conic-gradient(#ff007f, #00f0ff, #7f00ff, #ff007f); --glow: rgba(0,240,255,.8); }
 .fc-rgb { --fb: conic-gradient(#ff2a2a, #ffb000, #33ff33, #00e5ff, #2a4bff, #d500ff, #ff2a2a); --glow: rgba(255,255,255,.35); }
+.fc-red { --fb: #ff2a2a; --glow: rgba(255,42,42,.8); }
+.fc-emerald { --fb: #39ff14; --glow: rgba(57,255,20,.8); }
 .fc-rgb .frame::before { animation: hue 3s linear infinite; }
 @keyframes hue { to { filter: hue-rotate(360deg); } }
+
+/* Avatar Presets Grid Style */
+.preset-avatars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.preset-avatar-item {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  background: var(--navy-800);
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+.preset-avatar-item:hover { transform: scale(1.08); border-color: var(--orange); }
+.preset-avatar-item img { width: 100%; height: 100%; object-fit: cover; }
 
 /* User Banner & Profile Header */
 .pbanner {
@@ -431,7 +459,8 @@ const STEAM_IDS = {
   'GTA V': 271590, 'Among Us': 945360, 'Fall Guys': 1097150, 'Terraria': 105600, 'Stardew Valley': 413150, 
   'Hollow Knight': 367520, 'Rocket League': 252950, 'Overwatch 2': 2357570, 'Left 4 Dead 2': 550, 
   'Team Fortress 2': 440, 'Hades': 1145360, 'Sea of Thieves': 1172620, 'Euro Truck Simulator 2': 227300, 
-  'Call of Duty': 1938090, 'EA Sports FC 24': 2195250, 'EA Sports FC 25': 2669320, 'Football Manager 2024': 2252570,
+  'Call of Duty': 1938090, 'EA Sports FC 24': 2195250, 'EA Sports FC 25': 2669320, 'EA Sports FC 26': 2669320, 'EA Sports FC 27': 2669320,
+  'Football Manager 2024': 2252570, 'Football Manager 2026': 2252570,
   'Outlast': 238320, 'Outlast 2': 414700, 'The Outlast Trials': 1304930,
   'Valorant': 8500, 'Resident Evil Village': 1196590, 
   'Resident Evil 4': 2050650, 'Resident Evil 2': 883710, 'Hogwarts Legacy': 990080, 'Sons of the Forest': 1326410, 
@@ -463,20 +492,35 @@ const FCOLORS = [
   ['emerald', 'Zümrüt Yeşil', '#39ff14']
 ];
 
+/* Built-in Preset Avatars */
+const PRESET_AVATARS = [
+  { id: 'av_cyber', name: 'Siber Oyuncu', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=Gamer1' },
+  { id: 'av_ninja', name: 'Gölge Ninja', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=ShadowNinja' },
+  { id: 'av_dragon', name: 'Alev Ejderi', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=FireDragon' },
+  { id: 'av_skull', name: 'Kuru Kafa', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=SkullX' },
+  { id: 'av_alien', name: 'Siber Uzaylı', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=AlienX' },
+  { id: 'av_robot', name: 'Mecha Robot', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=MechaBot' },
+  { id: 'av_samurai', name: 'Neon Samuray', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=SamuraiNeon' },
+  { id: 'av_knight', name: 'Kraliyet Şövalyesi', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=RoyalKnight' },
+  { id: 'av_wizard', name: 'Kuantum Büyücü', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=MageZero' },
+  { id: 'av_phoenix', name: 'Anka Kuşu', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=PhoenixGold' }
+];
+
 const BGS = [
   ['sunset', 'Gün Batımı', 'linear-gradient(120deg,#ff8a1f 0%,#c4467a 45%,#5b2bd6 100%)'],
   ['night', 'Gece', 'linear-gradient(135deg,#080a22,#2a1a7a 70%,#5b2bd6)'],
   ['ember', 'Kor', 'linear-gradient(135deg,#0d1033 30%,#7a2e12 75%,#ff8a1f)'],
   ['aurora', 'Aurora', 'linear-gradient(120deg,#151a4a,#5b2bd6 50%,#ff8a1f)'],
   ['grid', 'Izgara', 'linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/26px 26px,linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/26px 26px,linear-gradient(135deg,#0d1033,#3a1b99)'],
-  ['re', 'Resident Evil', 'linear-gradient(135deg, #100202, #3b0606 50%, #8b0000 100%)'],
-  ['hogwarts', 'Hogwarts', 'linear-gradient(135deg, #091726, #1b382b 50%, #3e2808 100%)'],
-  ['forest', 'Sons of the Forest', 'linear-gradient(135deg, #07150b, #19381f 50%, #0d2212 100%)'],
-  ['gow', 'God of War', 'linear-gradient(135deg, #170d06, #3d1b06 50%, #0f2b38 100%)'],
-  ['valorant', 'Valorant Red', 'linear-gradient(135deg, #0f1923 0%, #ff4655 50%, #111e2e 100%)'],
-  ['cyberpunk', 'Cyberpunk', 'linear-gradient(135deg, #1f1b00, #423c00 50%, #fcee0a 100%)'],
-  ['fm24', 'Football Manager 24', 'linear-gradient(135deg, #031c0a, #0b3d17 50%, #1b263b 100%)'],
-  ['fm26', 'Football Manager 26', 'linear-gradient(135deg, #081026, #0e2a47 50%, #00e676 100%)']
+  ['re', 'Resident Evil', 'linear-gradient(135deg, rgba(16,2,2,0.85), rgba(139,0,0,0.85)), url("https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/page_bg_generated_v6.jpg") center/cover'],
+  ['hogwarts', 'Hogwarts', 'linear-gradient(135deg, rgba(9,23,38,0.85), rgba(62,40,8,0.85)), url("https://cdn.cloudflare.steamstatic.com/steam/apps/990080/page_bg_generated_v6.jpg") center/cover'],
+  ['forest', 'Sons of the Forest', 'linear-gradient(135deg, rgba(7,21,11,0.85), rgba(13,34,18,0.85)), url("https://cdn.cloudflare.steamstatic.com/steam/apps/1326410/page_bg_generated_v6.jpg") center/cover'],
+  ['gow', 'God of War', 'linear-gradient(135deg, rgba(23,13,6,0.85), rgba(15,43,56,0.85)), url("https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/page_bg_generated_v6.jpg") center/cover'],
+  ['valorant', 'Valorant HD', 'linear-gradient(135deg, rgba(15,25,35,0.7), rgba(255,70,85,0.4)), url("https://th.bing.com/th/id/R.fbed35938acd56287d4dcedf1bcc65f7?rik=gUYELBiH6q3QSA&pid=ImgRaw&r=0") center/cover'],
+  ['cyberpunk', 'Cyberpunk 2077', 'linear-gradient(135deg, rgba(31,27,0,0.85), rgba(252,238,10,0.4)), url("https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/page_bg_generated_v6.jpg") center/cover'],
+  ['fm24', 'Football Manager 24', 'linear-gradient(135deg, rgba(3,28,10,0.7), rgba(27,38,59,0.7)), url("https://th.bing.com/th/id/R.b08fa915154c05547326666c6f845712?rik=pElMQU29Gez6KA&pid=ImgRaw&r=0") center/cover'],
+  ['fm26', 'Football Manager 26', 'linear-gradient(135deg, rgba(8,16,38,0.7), rgba(0,230,118,0.5)), url("https://th.bing.com/th/id/R.42263531953c6cc2aae11ff151c78c8b?rik=cGFVRqesvuhr4g&pid=ImgRaw&r=0") center/cover'],
+  ['ea26', 'EA Sports FC 26', 'linear-gradient(135deg, rgba(10,30,60,0.85), rgba(255,215,0,0.5))']
 ];
 
 const STORE_FONTS = [
@@ -958,14 +1002,27 @@ function profileHTML(key, u, own) {
     </div>
 
     ${view.customTab === 'avatar' ? `
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <label>Profil Fotoğrafı Yükle Veya Bağlantı Yapıştır</label>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <input id="avatarUrlInput" placeholder="Resim URL'si (https://...)" value="${esc(u.avatarUrl || '')}" style="flex:1">
-          <input type="file" id="avatarFileInput" accept="image/*" style="display:none">
-          <button class="btn btn-ghost btn-sm" onclick="$('#avatarFileInput').click()">📁 Dosya Seç</button>
-          <button class="btn btn-or btn-sm" id="saveAvatarBtn">Kaydet</button>
-          ${u.avatarUrl ? `<button class="btn btn-ghost btn-sm" id="removeAvatarBtn" style="color:#ff2a2a">Resmi Kaldır</button>` : ''}
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div>
+          <label style="margin-top:0">Hazır Profil Resimleri (Tek Tıkla Seç)</label>
+          <div class="preset-avatars-grid">
+            ${PRESET_AVATARS.map(av => `
+              <div class="preset-avatar-item" data-preset-av="${av.url}" title="${av.name}">
+                <img src="${av.url}" alt="${av.name}">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div>
+          <label>Veya Kendi Bağlantını Yapıştır / Dosya Yükle</label>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input id="avatarUrlInput" placeholder="Resim URL'si (https://...)" value="${esc(u.avatarUrl || '')}" style="flex:1">
+            <input type="file" id="avatarFileInput" accept="image/*" style="display:none">
+            <button class="btn btn-ghost btn-sm" onclick="$('#avatarFileInput').click()">📁 Dosya Seç</button>
+            <button class="btn btn-or btn-sm" id="saveAvatarBtn">Kaydet</button>
+            ${u.avatarUrl ? `<button class="btn btn-ghost btn-sm" id="removeAvatarBtn" style="color:#ff2a2a">Resmi Kaldır</button>` : ''}
+          </div>
         </div>
       </div>
     ` : ''}
@@ -1067,6 +1124,13 @@ function bindProfile(key, own) {
       }
     };
   }
+
+  document.querySelectorAll('[data-preset-av]').forEach(btn => {
+    btn.onclick = () => {
+      u.avatarUrl = btn.dataset.presetAv;
+      save(); render(); toast('Hazır profil resmi uygulandı!');
+    };
+  });
 
   const avatarFileInput = $('#avatarFileInput');
   if (avatarFileInput) {
