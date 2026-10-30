@@ -63,13 +63,17 @@ body {
   to { filter: drop-shadow(0 0 25px #ff8a1f); }
 }
 
-/* Dynamic Theme BG overrides for Iconic Story Games */
+/* Dynamic Theme BG overrides for Iconic Games */
 .bg-re { background: linear-gradient(135deg, #100202, #3b0606 50%, #8b0000 100%) !important; }
 .bg-hogwarts { background: linear-gradient(135deg, #091726, #1b382b 50%, #3e2808 100%) !important; }
 .bg-forest { background: linear-gradient(135deg, #07150b, #19381f 50%, #0d2212 100%) !important; }
 .bg-gow { background: linear-gradient(135deg, #170d06, #3d1b06 50%, #0f2b38 100%) !important; }
-.bg-valorant { background: #ff4655 !important; }
+.bg-valorant { background: linear-gradient(135deg, #0f1923 0%, #ff4655 50%, #111e2e 100%) !important; }
 .bg-cyberpunk { background: linear-gradient(135deg, #1f1b00, #423c00 50%, #fcee0a 100%) !important; }
+.bg-fm24 { background: linear-gradient(135deg, #031c0a, #0b3d17 50%, #1b263b 100%) !important; }
+.bg-fm26 { background: linear-gradient(135deg, #081026, #0e2a47 50%, #00e676 100%) !important; }
+.bg-ea24 { background: linear-gradient(135deg, #051329, #0a2550 50%, #00f0ff 100%) !important; }
+.bg-ea25 { background: linear-gradient(135deg, #180324, #3d085c 50%, #ff007f 100%) !important; }
 
 h1, h2, h3, h4 { font-family: var(--head); letter-spacing: 0.3px; }
 button, input, select { font: inherit; color: inherit; }
@@ -445,16 +449,18 @@ const COVER_GRADS = [
 const SHAPES = [
   ['circle', 'Daire'], ['square', 'Kare'], ['rounded', 'Yuvarlak Kare'], 
   ['triangle', 'Üçgen'], ['hexagon', 'Altıgen'], ['diamond', 'Elmas'], 
-  ['shield', 'Kalkan'], ['octagon', 'Sekizgen']
+  ['shield', 'Kalkan'], ['octagon', 'Sekizgen'], ['star', 'Yıldız'], ['crown', 'Taç']
 ];
 
 const FCOLORS = [
   ['orange', 'Turuncu', '#ff8a1f'], ['purple', 'Mor', '#8b4dff'], 
   ['duo', 'Turuncu-Mor', 'conic-gradient(#ff8a1f,#8b4dff,#ff8a1f)'], 
   ['neon', 'Siber Neon', 'conic-gradient(#ff007f,#00f0ff,#7f00ff,#ff007f)'], 
-  ['rgb', 'RGB', 'conic-gradient(#ff2a2a,#ffb000,#33ff33,#00e5ff,#2a4bff,#d500ff,#ff2a2a)'], 
-  ['gold', 'Altın', 'linear-gradient(135deg,#fff1b8,#ffc933,#c98a00)'], 
-  ['ice', 'Buz', 'linear-gradient(135deg,#d8f4ff,#6fd0ff)']
+  ['rgb', 'RGB Alev', 'conic-gradient(#ff2a2a,#ffb000,#33ff33,#00e5ff,#2a4bff,#d500ff,#ff2a2a)'], 
+  ['gold', 'Efsanevi Altın', 'linear-gradient(135deg,#fff1b8,#ffc933,#c98a00)'], 
+  ['ice', 'Buz Mavi', 'linear-gradient(135deg,#d8f4ff,#6fd0ff)'],
+  ['red', 'Alev Kırmızısı', '#ff2a2a'],
+  ['emerald', 'Zümrüt Yeşil', '#39ff14']
 ];
 
 const BGS = [
@@ -467,8 +473,10 @@ const BGS = [
   ['hogwarts', 'Hogwarts', 'linear-gradient(135deg, #091726, #1b382b 50%, #3e2808 100%)'],
   ['forest', 'Sons of the Forest', 'linear-gradient(135deg, #07150b, #19381f 50%, #0d2212 100%)'],
   ['gow', 'God of War', 'linear-gradient(135deg, #170d06, #3d1b06 50%, #0f2b38 100%)'],
-  ['valorant', 'Valorant', 'linear-gradient(135deg, #0f1923 0%, #ff4655 50%, #111e2e 100%)'],
-  ['cyberpunk', 'Cyberpunk', 'linear-gradient(135deg, #1f1b00, #423c00 50%, #fcee0a 100%)']
+  ['valorant', 'Valorant Red', 'linear-gradient(135deg, #0f1923 0%, #ff4655 50%, #111e2e 100%)'],
+  ['cyberpunk', 'Cyberpunk', 'linear-gradient(135deg, #1f1b00, #423c00 50%, #fcee0a 100%)'],
+  ['fm24', 'Football Manager 24', 'linear-gradient(135deg, #031c0a, #0b3d17 50%, #1b263b 100%)'],
+  ['fm26', 'Football Manager 26', 'linear-gradient(135deg, #081026, #0e2a47 50%, #00e676 100%)']
 ];
 
 const STORE_FONTS = [
@@ -943,7 +951,8 @@ function profileHTML(key, u, own) {
         <button class="tab ${view.customTab === 'avatar' ? 'on' : ''}" data-ctab="avatar">Profil Resmi</button>
         <button class="tab ${view.customTab === 'fonts' ? 'on' : ''}" data-ctab="fonts">Yazı Stili</button>
         <button class="tab ${view.customTab === 'colors' ? 'on' : ''}" data-ctab="colors">İsim Rengi</button>
-        <button class="tab ${view.customTab === 'shapes' ? 'on' : ''}" data-ctab="shapes">Çerçeve</button>
+        <button class="tab ${view.customTab === 'shapes' ? 'on' : ''}" data-ctab="shapes">Çerçeve Şekli</button>
+        <button class="tab ${view.customTab === 'fcolors' ? 'on' : ''}" data-ctab="fcolors">Çerçeve Rengi</button>
         <button class="tab ${view.customTab === 'bgs' ? 'on' : ''}" data-ctab="bgs">Arka Plan</button>
       </div>
     </div>
@@ -990,6 +999,19 @@ function profileHTML(key, u, own) {
           const locked = pts < req;
           return `<div class="store-item ${u.shape === k ? 'on' : ''} ${locked ? 'locked' : ''}" data-shape="${k}">
             <div>${n}</div>
+            ${locked ? `<span class="lock-tag">🔒 ${req} Puan</span>` : '<span style="font-size:0.7rem;color:#39ff14">Açık</span>'}
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+
+    ${view.customTab === 'fcolors' ? `
+      <div class="store-grid">
+        ${FCOLORS.map(([k, n, c], idx) => {
+          const req = idx * 1500;
+          const locked = pts < req;
+          return `<div class="store-item ${u.fcolor === k ? 'on' : ''} ${locked ? 'locked' : ''}" data-fcolor="${k}">
+            <div style="font-weight:bold;color:#fff">${n}</div>
+            <div style="width:24px;height:24px;border-radius:50%;background:${c};margin:4px auto"></div>
             ${locked ? `<span class="lock-tag">🔒 ${req} Puan</span>` : '<span style="font-size:0.7rem;color:#39ff14">Açık</span>'}
           </div>`;
         }).join('')}
@@ -1082,6 +1104,11 @@ function bindProfile(key, own) {
   document.querySelectorAll('[data-shape]').forEach(b => b.onclick = () => {
     const idx = SHAPES.findIndex(s => s[0] === b.dataset.shape);
     if (idx !== -1 && uPoints(u) >= idx * 1000) { u.shape = b.dataset.shape; save(); render(); }
+  });
+
+  document.querySelectorAll('[data-fcolor]').forEach(b => b.onclick = () => {
+    const idx = FCOLORS.findIndex(fc => fc[0] === b.dataset.fcolor);
+    if (idx !== -1 && uPoints(u) >= idx * 1500) { u.fcolor = b.dataset.fcolor; save(); render(); }
   });
 
   document.querySelectorAll('[data-bg]').forEach(b => b.onclick = () => {
